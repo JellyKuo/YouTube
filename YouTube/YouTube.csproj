@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FloatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FloatForm.Designer.cs">
+      <DependentUpon>FloatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormProvider.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FloatForm.resx">
+      <DependentUpon>FloatForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

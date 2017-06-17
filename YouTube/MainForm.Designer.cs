@@ -42,7 +42,8 @@
             this.toolStripFillLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PopupPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.openFloatButton = new System.Windows.Forms.Button();
+            this.vidNameLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PopupPanel.SuspendLayout();
@@ -160,20 +161,32 @@
             // PopupPanel
             // 
             this.PopupPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.PopupPanel.Controls.Add(this.button1);
-            this.PopupPanel.Location = new System.Drawing.Point(729, 54);
+            this.PopupPanel.Controls.Add(this.vidNameLabel);
+            this.PopupPanel.Controls.Add(this.openFloatButton);
+            this.PopupPanel.Location = new System.Drawing.Point(800, 54);
             this.PopupPanel.Name = "PopupPanel";
-            this.PopupPanel.Size = new System.Drawing.Size(238, 100);
+            this.PopupPanel.Size = new System.Drawing.Size(167, 132);
             this.PopupPanel.TabIndex = 7;
+            this.PopupPanel.Visible = false;
             // 
-            // button1
+            // openFloatButton
             // 
-            this.button1.Location = new System.Drawing.Point(3, 74);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.openFloatButton.Location = new System.Drawing.Point(5, 104);
+            this.openFloatButton.Name = "openFloatButton";
+            this.openFloatButton.Size = new System.Drawing.Size(100, 25);
+            this.openFloatButton.TabIndex = 0;
+            this.openFloatButton.Text = "在懸浮視窗開啟";
+            this.openFloatButton.UseVisualStyleBackColor = true;
+            this.openFloatButton.Click += new System.EventHandler(this.openFloatButton_Click);
+            // 
+            // vidNameLabel
+            // 
+            this.vidNameLabel.Location = new System.Drawing.Point(3, 5);
+            this.vidNameLabel.Name = "vidNameLabel";
+            this.vidNameLabel.Size = new System.Drawing.Size(161, 51);
+            this.vidNameLabel.TabIndex = 1;
+            this.vidNameLabel.Text = "label2";
+            this.vidNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -220,7 +233,8 @@
         private System.Windows.Forms.ToolStripStatusLabel statLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripFillLabel;
         private System.Windows.Forms.Panel PopupPanel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button openFloatButton;
+        private System.Windows.Forms.Label vidNameLabel;
     }
 }
 

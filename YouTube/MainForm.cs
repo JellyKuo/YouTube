@@ -18,7 +18,12 @@ namespace YouTube
 
             wb.CanGoBackChanged += (BackSender, BackE) => backButton.Enabled = wb.CanGoBack; ;
             wb.CanGoForwardChanged += (ForwardSender, ForwardE) => forwardButton.Enabled = true; ;
-            wb.ProgressChanged += (ProgressSender, ProgressE) => ProgBar.Value = Convert.ToInt32(ProgressE.CurrentProgress / ProgressE.MaximumProgress * 100);
+            wb.ProgressChanged += (ProgressSender, ProgressE) =>
+            {
+                if (ProgressE.MaximumProgress == 0)
+                    return;
+                ProgBar.Value = Convert.ToInt32(ProgressE.CurrentProgress / ProgressE.MaximumProgress * 100);
+            };
             wb.ScriptErrorsSuppressed = true;
 
             urlBox.PreviewKeyDown += (PKDSender, PKDE) =>
@@ -56,6 +61,18 @@ namespace YouTube
             string url = wb.Url.ToString();
             if(!urlBox.Focused)
                 urlBox.Text = url;
+            if (url.Contains("www.youtube.com/watch?v="))
+            {
+                string id = url.Substring(url.IndexOf("v=")+2);
+                Console.WriteLine("Video Detected!, ID = "+ id);
+                PopupPanel.Visible = true;
+            }
+        }
+
+        private void openFloatButton_Click(object sender, EventArgs e)
+        {
+            FloatForm ff = new FloatForm();
+            ff.Show();
         }
     }
 }
