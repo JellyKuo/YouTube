@@ -22,6 +22,20 @@ namespace YouTube
         }
         private static BrowserForm _BrowserForm;
 
+        public static DownloadForm DownloadForm
+        {
+            get
+            {
+                if (_DownloadForm == null || _DownloadForm.IsDisposed)
+                {
+                    _DownloadForm = new DownloadForm();
+                    _DownloadForm.FormClosing += FormProvider.ExitApp;
+                }
+                return _DownloadForm;
+            }
+        }
+        private static DownloadForm _DownloadForm;
+
         public static void ExitApp(object sender, System.Windows.Forms.FormClosingEventArgs e)  //關閉應用程式
         {
             Console.WriteLine("呼叫關閉!");
