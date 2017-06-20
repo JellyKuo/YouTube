@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace YouTube
 {
-    public partial class MainForm : Form
+    public partial class BrowserForm : Form
     {
-        public MainForm()
+        public BrowserForm()
         {
             InitializeComponent();
 

@@ -8,19 +8,19 @@ namespace YouTube
 {
     class FormProvider
     {
-        public static MainForm MainForm
+        public static BrowserForm BrowserForm
         {
             get
             {
-                if (_MainForm == null || _MainForm.IsDisposed)
+                if (_BrowserForm == null || _BrowserForm.IsDisposed)
                 {
-                    _MainForm = new MainForm();
-                    _MainForm.FormClosing += FormProvider.ExitApp;
+                    _BrowserForm = new BrowserForm();
+                    _BrowserForm.FormClosing += FormProvider.ExitApp;
                 }
-                return _MainForm;
+                return _BrowserForm;
             }
         }
-        private static MainForm _MainForm;
+        private static BrowserForm _BrowserForm;
 
         public static void ExitApp(object sender, System.Windows.Forms.FormClosingEventArgs e)  //關閉應用程式
         {
