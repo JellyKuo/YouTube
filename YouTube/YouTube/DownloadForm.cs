@@ -30,18 +30,17 @@ namespace YouTube
 
         private void 影片搜尋器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Form SearchForm = new SearchForm();
-            //SearchForm.Show();
+
         }
 
         private void 結束ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Exit();
+            FormProvider.ExitApp(null, null);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Exit();
+            FormProvider.ExitApp(null, null);
         }
 
         private void formatBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,14 +105,14 @@ namespace YouTube
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            Exception ex = Check();
-            //if (ex != null)
-                //MessageBox.Show(ex.Message, "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //else
-                //Start();
+            var ex = Check();
+            if (ex != null)
+                MessageBox.Show(ex.Message, "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+                Start();
         }
 
-        #endregion
+        #endregion 
 
         #region Debug 
         [Conditional("DEBUG")]
@@ -125,14 +124,19 @@ namespace YouTube
                 Text = "Debug",
                 BackColor = Color.LightPink,
             };
-            ToolStripMenuItem convertToolStripMenuItem = new ToolStripMenuItem()
-            {
-                Name = "convertToolStripMenyItem",
-                Text = "Convert"
-            };
             menuStrip1.Items.Add(debugToolStripMenuItem);
-            debugToolStripMenuItem.DropDown.Items.Add(convertToolStripMenuItem);
-            
+
+            ToolStripMenuItem debugDownloadToolStripMenuItem = new ToolStripMenuItem()
+            {
+                Name = "debugDownloadToolStripMenuItem",
+                Text = "Download"
+            };
+            debugDownloadToolStripMenuItem.Click += (sender,e) =>
+            {
+                throw new NotImplementedException("Add automatic value setting and sending");
+                Download();  
+            };
+            debugToolStripMenuItem.DropDown.Items.Add(debugDownloadToolStripMenuItem);
         }
 
         #endregion
@@ -153,104 +157,23 @@ namespace YouTube
                 return new Exception("位元率未填選");
             return null;
         }
-        /*
-        private async void Start()
+
+        private void Start()
         {
-            progressBar.Style = ProgressBarStyle.Marquee;
-            ToggleControls(false);
 
-            statLabel.Text = "下載程序進行中";
-            YTVideo vid = await Download();
-
-            statLabel.Text = "轉檔程序進行中";
-            string output = outputBox.Text;
-            if (useTitleAsNameBox.Checked)
-                if (outputBox.Text.EndsWith("\\"))
-                    output += vid.GetFileFriendlyTitle() + vid.fileExt;
-                else
-                    output += "\\" + vid.GetFileFriendlyTitle() + vid.fileExt;
-            Convert(vid, output);
-
-            statLabel.Text = "清理暫存檔中";
-            CleanUp();
-
-            ToggleControls(true);
-            progressBar.Value = 0;
-            progressBar.Style = ProgressBarStyle.Continuous;
-            statLabel.Text = "就緒";
         }
 
-        private async Task<YTVideo> Download()
+        private void Download()
         {
-            string url;
-            if (urlRadio.Checked == true)
-                url = inputBox.Text;
-            else if (idRadio.Checked == true)
-                url = "https://youtube.com/watch?v=" + inputBox.Text;
+            string Url;
+            if (urlRadio.Checked)
+                Url = inputBox.Text;
             else
-                throw new Exception("Input is empty");
-
-            Downloader dl = new Downloader()
-            {
-                url = url
-            };
-            return await dl.ExecuteDownload();
+                Url = @"https://www.youtube.com/watch?v=" + inputBox.Text;
+            Downloader Downloader = new Downloader(Url, formatBox.Text, int.Parse(quaBox.Text), outputBox.Text, useTitleAsNameBox.Checked);
+            throw new NotImplementedException("I haven't completed yet!");
         }
 
-        private void Convert(YTVideo vid, string output)
-        {
-            Converter con = new Converter()
-            {
-                Video = vid.Video,
-                FileFormat = formatBox.Text,
-                AudioBitrate = bitrateBox.Text,
-                VideoQuality = quaBox.Text,
-                OutputFile = output
-            };
-            con.WriteByteToFile();
-            con.ExecuteConvert();
-        }
-
-        private void Exit()
-        {
-            CleanUp();
-            Application.Exit();
-        }
-
-        private void CleanUp()
-        {
-            if (File.Exists("Temp.mp4"))
-                File.Delete("Temp.mp4");
-            Dispose();
-        }
-
-        private void ToggleControls(bool toggle)
-        {
-            inpGroup.Enabled = toggle;
-            outGroup.Enabled = toggle;
-            startButton.Enabled = toggle;
-        }*/
-
-        #region ProgressBar
-
-        public void PrepareProgressBar(bool arg)
-        {
-            if (arg)
-            {
-                progressBar.Style = ProgressBarStyle.Continuous;
-                progressBar.Value = 0;
-            }
-            else
-            {
-                progressBar.Value = 0;
-                progressBar.Style = ProgressBarStyle.Marquee;
-            }
-        }
-        public void UpdateProgress(int percent)
-        {
-            progressBar.Value = percent;
-        }
-
-#endregion
+        
     }
 }
