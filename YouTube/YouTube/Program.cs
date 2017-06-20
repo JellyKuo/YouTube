@@ -16,7 +16,7 @@ namespace YouTube
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(FormProvider.MainForm);
+            Application.Run(FormProvider.DownloadForm);
         }
     }
 }
