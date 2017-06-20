@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace YouTube
 {
-    public partial class FloatForm : Form
+    public partial class DownloadForm : Form
     {
-        public FloatForm(string url)
+        public DownloadForm()
         {
             InitializeComponent();
-            wb.Navigate(url);
-            this.Show();
-        }
-
-        private void FloatForm_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }

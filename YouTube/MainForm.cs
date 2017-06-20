@@ -21,8 +21,9 @@ namespace YouTube
             wb.ProgressChanged += (ProgressSender, ProgressE) =>
             {
                 if (ProgressE.MaximumProgress == 0)
-                    return;
-                ProgBar.Value = Convert.ToInt32(ProgressE.CurrentProgress / ProgressE.MaximumProgress * 100);
+                    ProgBar.Value = 0;
+                else
+                    ProgBar.Value = Convert.ToInt32(ProgressE.CurrentProgress / ProgressE.MaximumProgress * 100);
             };
             wb.ScriptErrorsSuppressed = true;
 
@@ -66,13 +67,17 @@ namespace YouTube
                 string id = url.Substring(url.IndexOf("v=")+2);
                 Console.WriteLine("Video Detected!, ID = "+ id);
                 PopupPanel.Visible = true;
+                openFloatButton.Click += (s, ev) =>
+                {
+                    FloatForm ff = new FloatForm(url);
+                    ff.Show();
+                };
             }
         }
 
         private void openFloatButton_Click(object sender, EventArgs e)
         {
-            FloatForm ff = new FloatForm();
-            ff.Show();
+
         }
     }
 }
