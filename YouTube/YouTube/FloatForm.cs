@@ -12,14 +12,16 @@ namespace YouTube
 {
     public partial class FloatForm : Form
     {
-        public FloatForm()
+        public FloatForm(string url)
         {
             InitializeComponent();
+            wb.Navigate(url);
+            this.Show();
         }
 
         private void FloatForm_Load(object sender, EventArgs e)
         {
-            wb.Navigate("http://www.youtube.com/v/UOueMzKYbP0?version=3&autoplay=1&fs=0");
+            
         }
     }
 }

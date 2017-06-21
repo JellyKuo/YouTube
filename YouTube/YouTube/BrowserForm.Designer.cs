@@ -1,6 +1,6 @@
 ﻿namespace YouTube
 {
-    partial class MainForm
+    partial class BrowserForm
     {
         /// <summary>
         /// 設計工具所需的變數。
