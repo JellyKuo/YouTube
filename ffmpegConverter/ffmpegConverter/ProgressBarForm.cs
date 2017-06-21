@@ -25,6 +25,7 @@ namespace ffmpegConverter
         public ProgressBar FileprogressBar { get { return FileProgressBar; } set { } }
         public Label Filenamelabel { get { return FileNameLabel; } set { } }
         public Label ProgressrateLabel { get { return ProgressRateLabel; } set { } }
+        public Button Cancelbtn { get { return CancelBtn; } set { } }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {

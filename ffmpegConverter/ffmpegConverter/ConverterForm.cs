@@ -35,8 +35,10 @@ namespace ffmpegConverter
             remindlb.Location = new Point(filelistBox.Location.X - 8, filelistBox.Location.Y - 10);
             filelist.ListChanged += (sender2, e2) =>
               {
-                  if (filelistBox.Items.Count == 0 && filelistBox.Enabled == false)
-                      filelistBox.Enabled = true;
+                  //if (filelistBox.Items.Count == 0 && filelistBox.Enabled == false)
+                  //    filelistBox.Enabled = true;
+                  if (filelistBox.Items.Count == 0)
+                      remindlb.Visible = true;
               };
         }
 
@@ -48,7 +50,7 @@ namespace ffmpegConverter
 
         private void FilelistBox_DragDrop(object sender, DragEventArgs e)
         {
-            remindlb.Hide();
+            remindlb.Visible = false;
             string[] filepaths = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string filepath in filepaths)
             {
@@ -73,7 +75,7 @@ namespace ffmpegConverter
                 }
             }
             if (filelistBox.Items.Count != 0)
-                remindlb.Hide();
+                remindlb.Visible = false;
             openFileDialog1.Dispose();
             openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Multiselect = true;
@@ -108,7 +110,7 @@ namespace ffmpegConverter
         {
             if (AutoConvertBox.Checked && filelistBox.Items.Count != 0)
             {
-                remindlb.Hide();
+                remindlb.Visible = false;
                 ConvertButton.Enabled = false;
                 if (check())
                     Convert();
@@ -138,9 +140,10 @@ namespace ffmpegConverter
             {
                 if (filelistBox.Items.Count <= 0)
                     return false;
-                string arg = "", filepath = "", filename = "";
+                string arg = "", filepath = "", filename = "", outputpath = "";
                 filepath = filelist[0];
                 filename = Path.GetFileNameWithoutExtension(filepath);
+                outputpath = @OutputPathBox.Text + "\\" + Path.GetFileNameWithoutExtension(filelist[0]) + FormatBox.Text;
                 arg = @" -i " + '"' + filepath + '"' + " " //input
                     + '"' + OutputPathBox.Text + "\\" + filename + FormatBox.Text + '"' //output
                     ;
@@ -151,12 +154,6 @@ namespace ffmpegConverter
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true,
-                };
-                proc.Disposed += (sender, e) =>
-                {
-                    processcacenl = true;
-                    try { throw new Exception("ProcessCancel"); }
-                    catch (Exception ex) { MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 };
                 if (!processcacenl)
                     await Task.Run(() =>
@@ -180,33 +177,75 @@ namespace ffmpegConverter
 
         private async void Convert()
         {
-            filelistBox.Enabled = false;
+            string filepath = "", filename = "", outputpath = "";
+            filepath = filelist[0];
+            filename = Path.GetFileNameWithoutExtension(filepath);
+            outputpath = @OutputPathBox.Text + "\\" + Path.GetFileNameWithoutExtension(filelist[0]) + FormatBox.Text;
             var pbf = new ProgressBarForm();
             pbf.FileprogressBar.Maximum = filelistBox.Items.Count;
             pbf.FileprogressBar.Value = 0;
-            pbf.Disposed += (sender, e) => proc.Dispose(); ;
+            pbf.Disposed += (sender, e) =>
+            {
+                proc.Kill();
+                processcacenl = true;
+            };
+            pbf.Cancelbtn.Click += (sender, e) =>
+              {
+                  processcacenl = true;
+                  try { throw new Exception("ProcessCancel"); }
+                  catch (Exception ex) { MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+              };
             pbf.Show();
+            if (File.Exists(outputpath))
+            {
+                var fef = new FileExistForm();
+                fef.Replacebtn.Click += (sender, e) =>
+                {
+                    File.Delete(outputpath);
+                    fef.Dispose();
+                    pbf.Dispose();
+                    Convert();
+                };
+                fef.Skipbtn.Click += (sender, e) =>
+                {
+                    filelistBox.Items.Remove(filelist[0]);
+                    filelist.RemoveAt(0);
+                    fef.Dispose();
+                    pbf.Dispose();
+                };
+                fef.ReplaceAllbtn.Click += (sender, e) =>
+                {
+                    File.Delete(outputpath);
+                    fef.Dispose();
+                    pbf.Dispose();
+                    Convert();
+                };
+                fef.Show();
+                return;
+            }
             while (filelistBox.Items.Count > 0)
             {
                 pbf.Filenamelabel.Text = filelist[0];
                 pbf.ProgressrateLabel.Text = "Finished : " + pbf.FileprogressBar.Value.ToString() + "/" + pbf.FileprogressBar.Maximum.ToString();
                 if (await ConvertProcess())
                 {
-                    filelistBox.Items.Remove(filelist[0]);
-                    filelist.RemoveAt(0);
-                    pbf.FileprogressBar.Value += 1;
+                    if (!processcacenl)
+                    {
+                        filelistBox.Items.Remove(filelist[0]);
+                        filelist.RemoveAt(0);
+                        pbf.FileprogressBar.Value += 1;
+                    }
                     if (pbf.FileprogressBar.Value == pbf.FileprogressBar.Maximum)
                         pbf.Dispose();
                 }
                 else
                 {
                     proc = new Process() { EnableRaisingEvents = true };
-                    filelistBox.Enabled = true;
                     return;
                 }
             }
             if (filelistBox.Items.Count == 0)
-                remindlb.Show();
+                remindlb.Visible = true;
         }
 
         private bool check()
