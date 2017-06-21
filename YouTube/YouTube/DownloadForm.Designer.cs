@@ -99,7 +99,7 @@
             // 影片搜尋器ToolStripMenuItem
             // 
             this.影片搜尋器ToolStripMenuItem.Name = "影片搜尋器ToolStripMenuItem";
-            this.影片搜尋器ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.影片搜尋器ToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.影片搜尋器ToolStripMenuItem.Text = "影片搜尋器";
             this.影片搜尋器ToolStripMenuItem.Click += new System.EventHandler(this.影片搜尋器ToolStripMenuItem_Click);
             // 
@@ -249,8 +249,8 @@
             this.formatBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formatBox.FormattingEnabled = true;
             this.formatBox.Items.AddRange(new object[] {
-            "mp3",
-            "mp4"});
+            "Mp3",
+            "Mp4"});
             this.formatBox.Location = new System.Drawing.Point(71, 49);
             this.formatBox.Name = "formatBox";
             this.formatBox.Size = new System.Drawing.Size(65, 20);
@@ -331,7 +331,7 @@
             this.progressBar.Step = 20;
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
-            // MainForm
+            // DownloadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -342,7 +342,7 @@
             this.Controls.Add(this.inpGroup);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainForm";
+            this.Name = "DownloadForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);

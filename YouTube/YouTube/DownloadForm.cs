@@ -133,8 +133,7 @@ namespace YouTube
             };
             debugDownloadToolStripMenuItem.Click += (sender,e) =>
             {
-                throw new NotImplementedException("Add automatic value setting and sending");
-                Download();  
+                Download(@"https://www.youtube.com/watch?v=UOueMzKYbP0", @"Mp4", 360, @"TestFolder\Download\", true);
             };
             debugToolStripMenuItem.DropDown.Items.Add(debugDownloadToolStripMenuItem);
         }
@@ -160,18 +159,23 @@ namespace YouTube
 
         private void Start()
         {
-
-        }
-
-        private void Download()
-        {
             string Url;
             if (urlRadio.Checked)
                 Url = inputBox.Text;
             else
                 Url = @"https://www.youtube.com/watch?v=" + inputBox.Text;
-            Downloader Downloader = new Downloader(Url, formatBox.Text, int.Parse(quaBox.Text), outputBox.Text, useTitleAsNameBox.Checked);
-            throw new NotImplementedException("I haven't completed yet!");
+            Download(Url, formatBox.Text, int.Parse(quaBox.Text), outputBox.Text, useTitleAsNameBox.Checked);
+        }
+
+        private void Download(string Url,string Format, int Quality,string Output,bool UseTitleAsName)
+        {
+            Downloader Downloader = new Downloader(Url, Format,Quality, Output, UseTitleAsName);
+            Downloader.ProgressChanged += (sender, e) =>
+             {
+                 progressBar.Value = (int)e;
+             };
+            Downloader.ExecuteDownload();
+            
         }
 
         

@@ -16,7 +16,7 @@ namespace YouTube
         public int Quality { get; }
         public string SavePath { get; }
 
-        public delegate void ProgressChangeHandler(object sender, ProgressEventArgs e);
+        public delegate void ProgressChangeHandler(object sender, double e);
         public event ProgressChangeHandler ProgressChanged;
 
         private bool UseTitleAsName;
@@ -30,7 +30,7 @@ namespace YouTube
         {
             VideoInfo Video;
             VideoType Type;
-            string Path = SavePath;
+            string Output = SavePath;
             switch (this.Format)
             {
                 case "3GP":
@@ -59,15 +59,15 @@ namespace YouTube
             if (Video.RequiresDecryption)
                 DownloadUrlResolver.DecryptDownloadUrl(Video);
             if (UseTitleAsName)
-                Path = SavePath + RemoveIllegalPathCharacters(Video.Title) + Video.VideoExtension;
+                Output = Path.Combine(SavePath , RemoveIllegalPathCharacters(Video.Title) + Video.VideoExtension);
 
-            var DL = new VideoDownloader(Video, Path);
+            var DL = new VideoDownloader(Video, Output);
             DL.DownloadProgressChanged += (sender, e) =>
             {
                 if (ProgressChanged == null)
                     return;
                 Console.WriteLine("Downloader Progress: " + e.ProgressPercentage);
-                ProgressChanged(sender, e);
+                ProgressChanged(sender, e.ProgressPercentage);
             };
             DL.Execute();
         }
