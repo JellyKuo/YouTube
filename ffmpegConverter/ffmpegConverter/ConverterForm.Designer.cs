@@ -1,6 +1,6 @@
 ﻿namespace ffmpegConverter
 {
-    partial class Form1
+    partial class ConverterForm
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -34,10 +34,10 @@
             this.FormatBox = new System.Windows.Forms.ComboBox();
             this.AutoConvertBox = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
             this.OuputPathbtn = new System.Windows.Forms.Button();
             this.OutputPathBox = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.remindlb = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // filelistBox
@@ -57,7 +57,7 @@
             this.InputButton.Name = "InputButton";
             this.InputButton.Size = new System.Drawing.Size(276, 31);
             this.InputButton.TabIndex = 1;
-            this.InputButton.Text = "button1";
+            this.InputButton.Text = "Input";
             this.InputButton.UseVisualStyleBackColor = true;
             this.InputButton.Click += new System.EventHandler(this.InputButton_Click);
             // 
@@ -67,7 +67,7 @@
             this.ConvertButton.Name = "ConvertButton";
             this.ConvertButton.Size = new System.Drawing.Size(276, 31);
             this.ConvertButton.TabIndex = 1;
-            this.ConvertButton.Text = "button1";
+            this.ConvertButton.Text = "Convert";
             this.ConvertButton.UseVisualStyleBackColor = true;
             this.ConvertButton.Click += new System.EventHandler(this.ConvertButton_Click);
             // 
@@ -97,14 +97,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(313, 180);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
-            this.label1.TabIndex = 4;
-            // 
             // OuputPathbtn
             // 
             this.OuputPathbtn.Location = new System.Drawing.Point(520, 438);
@@ -122,21 +114,31 @@
             this.OutputPathBox.Size = new System.Drawing.Size(374, 22);
             this.OutputPathBox.TabIndex = 6;
             // 
-            // Form1
+            // remindlb
+            // 
+            this.remindlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.remindlb.Location = new System.Drawing.Point(199, 13);
+            this.remindlb.Name = "remindlb";
+            this.remindlb.Size = new System.Drawing.Size(557, 420);
+            this.remindlb.TabIndex = 7;
+            this.remindlb.Text = "Drag your files to here";
+            this.remindlb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ConverterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 553);
+            this.Controls.Add(this.remindlb);
             this.Controls.Add(this.OutputPathBox);
             this.Controls.Add(this.OuputPathbtn);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.AutoConvertBox);
             this.Controls.Add(this.FormatBox);
             this.Controls.Add(this.ConvertButton);
             this.Controls.Add(this.InputButton);
             this.Controls.Add(this.filelistBox);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "ConverterForm";
+            this.Text = "ConverterForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
@@ -153,10 +155,10 @@
         private System.Windows.Forms.ComboBox FormatBox;
         private System.Windows.Forms.CheckBox AutoConvertBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button OuputPathbtn;
         private System.Windows.Forms.TextBox OutputPathBox;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label remindlb;
     }
 }
 
