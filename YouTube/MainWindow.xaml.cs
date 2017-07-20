@@ -24,5 +24,10 @@ namespace YouTube
         {
             InitializeComponent();
         }
+
+        private void AppExit_Click(object sender,EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
