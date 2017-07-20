@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTube", "YouTube\YouTube.csproj", "{9329355E-F53A-4C7F-BCA4-79BB15C7E936}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTube", "YouTube.csproj", "{2E44195B-05F4-4568-BBAD-68D9734F0E38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9329355E-F53A-4C7F-BCA4-79BB15C7E936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9329355E-F53A-4C7F-BCA4-79BB15C7E936}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9329355E-F53A-4C7F-BCA4-79BB15C7E936}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9329355E-F53A-4C7F-BCA4-79BB15C7E936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E44195B-05F4-4568-BBAD-68D9734F0E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E44195B-05F4-4568-BBAD-68D9734F0E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E44195B-05F4-4568-BBAD-68D9734F0E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E44195B-05F4-4568-BBAD-68D9734F0E38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
