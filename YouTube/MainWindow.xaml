@@ -10,7 +10,7 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="檔案(_F)">
-                    <MenuItem Header="離開(_X)" Click="AppExit_Click" Name="AppExit"/>
+                    <MenuItem Header="離開(_X)"/>
                 </MenuItem>
                 <MenuItem Header="工具(_T)">
                     <MenuItem Header=""/>

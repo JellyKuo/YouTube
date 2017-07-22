@@ -10,29 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace YouTube
 {
     /// <summary>
-    /// MainWindow.xaml 的互動邏輯
+    /// DownloadWindow.xaml 的互動邏輯
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DownloadWindow : Window
     {
-        public MainWindow()
+        public DownloadWindow()
         {
             InitializeComponent();
-        }
-
-        private void AppExit_Click(object sender,EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

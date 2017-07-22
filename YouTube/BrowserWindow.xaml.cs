@@ -25,23 +25,7 @@ namespace YouTube
         {
             InitializeComponent();
         }
-
-        private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
-        {
-            Console.WriteLine("Url: {0}",e.Url);
-            UpdateUrlBox(e.Url);
-        }
-
-        private void UpdateUrlBox(string url)
-        {
-            Action act = () => UrlBox.Text = url;
-            var dispatcher = UrlBox.Dispatcher;
-            if (dispatcher.CheckAccess())
-                act();
-            else
-                dispatcher.Invoke(act);
-        }
-
+        
         private void UrlBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Enter)
