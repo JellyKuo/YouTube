@@ -20,6 +20,8 @@ namespace YouTube
     /// </summary>
     public partial class DownloadWindow : Window
     {
+        QueueWindow qw = null;
+
         public DownloadWindow()
         {
             InitializeComponent();
@@ -30,7 +32,7 @@ namespace YouTube
         {
             if (UseTitleAsNameCheck.IsChecked.Value)
             {
-                using (var fbd = new System.Windows.Forms.FolderBrowserDialog() { ShowNewFolderButton = true})
+                using (var fbd = new System.Windows.Forms.FolderBrowserDialog() { ShowNewFolderButton = true })
                 {
                     if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                         return;
@@ -71,6 +73,37 @@ namespace YouTube
                     QualityCombo.Items.Add(new ComboBoxItem() { Content = "192kbps" });
                     QualityCombo.Items.Add(new ComboBoxItem() { Content = "128kbps" });
                     break;
+            }
+        }
+
+        private void StartBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EnqueueBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (qw == null)
+            {
+                qw = new QueueWindow();
+                AdjustQueue(null, null);
+            }
+            qw.Show();
+            StartBtn.Content = "開始處理序列";
+
+        }
+
+        private void AdjustQueue(object sender, EventArgs e)
+        {
+            if (qw != null)
+            {
+                qw.Top = Top;
+                qw.Left = Left + Width - 10;
+                qw.Height = Height;
+                if (WindowState == WindowState.Minimized)
+                    qw.WindowState = WindowState.Minimized;
+                if (WindowState == WindowState.Normal)
+                    qw.WindowState = WindowState.Normal;
             }
         }
     }

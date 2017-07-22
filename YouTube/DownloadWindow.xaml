@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YouTube"
         mc:Ignorable="d"
-        Title="DownloadWindow" Height="299.16" Width="350">
+        Title="DownloadWindow" Height="299.16" Width="350" SizeChanged="AdjustQueue" StateChanged="AdjustQueue" LocationChanged="AdjustQueue">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="檔案(_F)">
@@ -59,8 +59,8 @@
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="StartBtn" Grid.Column="0" Content="開始"/>
-                <Button x:Name="EnqueueBtn" Grid.Column="1" Content="加入序列"/>
+                <Button x:Name="StartBtn" Grid.Column="0" Content="開始" Click="StartBtn_Click"/>
+                <Button x:Name="EnqueueBtn" Grid.Column="1" Margin="0,5,5,5" Content="加入序列" Click="EnqueueBtn_Click"/>
             </Grid>
         </Grid>
     </DockPanel>
