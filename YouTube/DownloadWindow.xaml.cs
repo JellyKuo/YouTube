@@ -76,9 +76,36 @@ namespace YouTube
             }
         }
 
+        private void Enqueue()
+        {
+            var Ex = Check();
+            if (Ex != null)
+            {
+                MessageBox.Show(Ex.Message, "操作錯誤", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            } 
+            //TODO: Enqueue object
+                
+        }
+
+        private InvalidOperationException Check()
+        {
+            if (!UrlRadio.IsChecked.Value && !VidIDRadio.IsChecked.Value)
+                return new InvalidOperationException("請選擇輸入資料類型");
+            if (InpBox.Text == "")
+                return new InvalidOperationException("請輸入輸入資訊");
+            if (OutBox.Text == "")
+                return new InvalidOperationException("請輸入輸出位置");
+            if(FormatCombo.Text =="")
+                return new InvalidOperationException("請選擇輸出格式");
+            if (QualityCombo.Text == "")
+                return new InvalidOperationException("請選擇輸出品質");
+            return null;
+        }
+
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Enqueue();
         }
 
         private void EnqueueBtn_Click(object sender, RoutedEventArgs e)
@@ -86,14 +113,14 @@ namespace YouTube
             if (qw == null)
             {
                 qw = new QueueWindow();
-                AdjustQueue(null, null);
+                AdjustQueueWindow(null, null);
             }
             qw.Show();
             StartBtn.Content = "開始處理序列";
-
+            //Audit Required
         }
 
-        private void AdjustQueue(object sender, EventArgs e)
+        private void AdjustQueueWindow(object sender, EventArgs e)
         {
             if (qw != null)
             {

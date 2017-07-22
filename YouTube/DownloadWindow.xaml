@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YouTube"
         mc:Ignorable="d"
-        Title="DownloadWindow" Height="299.16" Width="350" SizeChanged="AdjustQueue" StateChanged="AdjustQueue" LocationChanged="AdjustQueue">
+        Title="DownloadWindow" Height="299.16" Width="350" SizeChanged="AdjustQueueWindow" StateChanged="AdjustQueueWindow" LocationChanged="AdjustQueueWindow">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="檔案(_F)">
@@ -34,8 +34,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton Content="網址" HorizontalAlignment="Left" Margin="10,7,0,0" Height="14" VerticalAlignment="Top"/>
-                    <RadioButton Content="影片ID" HorizontalAlignment="Left" Margin="10,35,0,0" Height="14" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="UrlRadio" Content="網址" HorizontalAlignment="Left" Margin="10,7,0,0" Height="14" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="VidIDRadio" Content="影片ID" HorizontalAlignment="Left" Margin="10,35,0,0" Height="14" VerticalAlignment="Top"/>
                     <TextBox x:Name="InpBox" Height="23" Margin="80,16,10,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
                 </Grid>
             </GroupBox>

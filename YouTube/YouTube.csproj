@@ -102,6 +102,7 @@
     <Compile Include="QueueWindow.xaml.cs">
       <DependentUpon>QueueWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Process.cs" />
     <Page Include="BrowserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
