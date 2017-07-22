@@ -16,9 +16,13 @@
                     <MenuItem Header=""/>
                 </MenuItem>
             </Menu>
-            <StackPanel>
-                
-            </StackPanel>
+            <Grid>
+                <GroupBox Header="GroupBox" Margin="10,10,0,10" HorizontalAlignment="Left" Width="193">
+                    <Grid>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
         </DockPanel>
     </Grid>
 </Window>
