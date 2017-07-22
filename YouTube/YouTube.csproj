@@ -99,7 +99,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Queue.cs" />
     <Compile Include="QueueWindow.xaml.cs">
       <DependentUpon>QueueWindow.xaml</DependentUpon>
     </Compile>
