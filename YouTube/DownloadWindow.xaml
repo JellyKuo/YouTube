@@ -5,7 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YouTube"
         mc:Ignorable="d"
-        Title="DownloadWindow" Height="300" Width="300">
-    <Grid>
-    </Grid>
+        Title="DownloadWindow" Height="299.16" Width="350">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="檔案(_F)">
+                <MenuItem Header="離開(_X)"/>
+            </MenuItem>
+            <MenuItem Header="工具(_T)">
+                <MenuItem Header=""/>
+            </MenuItem>
+        </Menu>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5,5,5,5" />
+                </Style>
+                <Style TargetType="{x:Type GroupBox}">
+                    <Setter Property="Margin" Value="5,5,5,0" />
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="輸入" Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Content="網址" HorizontalAlignment="Left" Margin="10,7,0,0" Height="14" VerticalAlignment="Top"/>
+                    <RadioButton Content="影片ID" HorizontalAlignment="Left" Margin="10,35,0,0" Height="14" VerticalAlignment="Top"/>
+                    <TextBox x:Name="InpBox" Height="23" Margin="80,16,10,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="輸出" Grid.Row="1">
+                <Grid>
+                    <Label Content="檔案" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="UseTitleAsNameCheck" Content="使用影片標題作為檔名" HorizontalAlignment="Left" Margin="170,40,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="OutBox" Height="23" Margin="49,12,38,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                    <Button x:Name="SfdBtn" Content="..." Margin="0,12,10,0" VerticalAlignment="Top" Height="23" HorizontalAlignment="Right" Width="23" Click="SfdBtn_Click"/>
+                    <Label Content="格式" HorizontalAlignment="Left" Margin="10,64,0,0" Height="25" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="FormatCombo" HorizontalAlignment="Left" Margin="49,68,0,0" VerticalAlignment="Top" Width="75" SelectionChanged="FormatCombo_SelectionChanged">
+                        <ComboBoxItem Content="MP4"/>
+                        <ComboBoxItem Content="MP3"/>
+                    </ComboBox>
+                    <Label Content="品質" Margin="201,64,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="34"/>
+                    <ComboBox x:Name="QualityCombo" HorizontalAlignment="Left" Margin="235,68,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </GroupBox>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="StartBtn" Grid.Column="0" Content="開始"/>
+                <Button x:Name="EnqueueBtn" Grid.Column="1" Content="加入序列"/>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>

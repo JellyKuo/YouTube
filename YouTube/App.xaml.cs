@@ -35,8 +35,10 @@ namespace YouTube
             };
             settings.SetOffScreenRenderingBestPerformanceArgs();
             Cef.Initialize(settings, true, null);
-            BrowserWindow bw = new BrowserWindow();
-            bw.Show();
+            //BrowserWindow bw = new BrowserWindow();
+            //bw.Show();
+            DownloadWindow dw = new DownloadWindow();
+            dw.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
