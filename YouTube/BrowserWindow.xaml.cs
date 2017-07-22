@@ -28,7 +28,7 @@ namespace YouTube
 
         private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
-            Console.Write("Url: {0}",e.Url);
+            Console.WriteLine("Url: {0}",e.Url);
             UpdateUrlBox(e.Url);
         }
 

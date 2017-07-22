@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:YouTube"
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
-        Title="BrowserWindow" Height="300" Width="300">
+        Title="BrowserWindow" Height="1000" Width="750">
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">

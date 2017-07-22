@@ -17,9 +17,14 @@ namespace YouTube
     /// </summary>
     public partial class App : Application
     {
-
         public App()
         {
+
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
             var settings = new CefSettings()
             {
                 CachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.InternetCache), "CefSharp\\Cache"),
@@ -30,6 +35,16 @@ namespace YouTube
             };
             settings.SetOffScreenRenderingBestPerformanceArgs();
             Cef.Initialize(settings, true, null);
+            BrowserWindow bw = new BrowserWindow();
+            bw.Show();
         }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Cef.Shutdown();
+            base.OnExit(e);
+        }
+
+        
     }
 }
