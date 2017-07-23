@@ -9,19 +9,19 @@ namespace YouTube
 {
     public static class Process
     {
-        public static ObservableCollection<Task> Queue;
+        public static ObservableCollection<Work> Queue;
         public static void StartExecuteQueue()
         {
             if (Queue.Count <= 0)
                 throw new InvalidOperationException("Sequence Queue is empty!");
             while (Queue.Count > 0)
             {
-                Queue[0].ExecuteTask();
+                Queue[0].ExecuteWork();
                 Queue.RemoveAt(0);
             }
         }
     }
-    public class Task
+    public class Work
     {
         public enum Type { Download, Convert };
         public enum Format { MP4, MP3 };
@@ -32,7 +32,7 @@ namespace YouTube
         public Format OutputFormat { get; }
         public string Quality { get; }
 
-        public Task(Type TaskType,string Name,string Source, string Destination,Format OutputFormat, string Quality)
+        public Work(Type TaskType,string Name,string Source, string Destination,Format OutputFormat, string Quality)
         {
             this.TaskType = TaskType;
             this.Name = Name;
@@ -42,7 +42,7 @@ namespace YouTube
             this.Quality = Quality;
         }
 
-        public void ExecuteTask()
+        public void ExecuteWork()
         {
 
         }

@@ -83,9 +83,11 @@ namespace YouTube
             {
                 MessageBox.Show(Ex.Message, "操作錯誤", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            } 
+            }
             //TODO: Enqueue object
-                
+            string url = "";
+            Work w = new Work(Work.Type.Download, "Name", url, OutBox.Text, Work.Format.MP4, QualityCombo.Text);
+            Process.Queue.Add(w);
         }
 
         private InvalidOperationException Check()
