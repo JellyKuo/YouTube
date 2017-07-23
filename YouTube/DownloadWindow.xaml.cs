@@ -82,11 +82,18 @@ namespace YouTube
             if (Ex != null)
             {
                 MessageBox.Show(Ex.Message, "操作錯誤", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return; 
             }
             //TODO: Enqueue object
-            string url = "";
-            Work w = new Work(Work.Type.Download, "Name", url, OutBox.Text, Work.Format.MP4, QualityCombo.Text);
+            var Url = UrlRadio.IsChecked.Value ? InpBox.Text : @"https://www.youtube.com/watch?v=" + InpBox.Text;
+            string Name;
+            if (UseTitleAsNameCheck.IsChecked.Value)
+            {
+                Name = "Pending task untitled";
+            }
+            else
+                Name = OutBox.Text.Split('\\').Last();
+            Work w = new Work(Work.Type.Download, Name, Url, OutBox.Text, Work.Format.MP4, QualityCombo.Text);
             Process.Queue.Add(w);
         }
 
