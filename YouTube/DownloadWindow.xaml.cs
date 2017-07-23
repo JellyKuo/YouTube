@@ -20,7 +20,7 @@ namespace YouTube
     /// </summary>
     public partial class DownloadWindow : Window
     {
-        QueueWindow qw = null;
+        QueueWindow qw = WindowProvider.QueueWindow;
 
         public DownloadWindow()
         {
@@ -84,17 +84,16 @@ namespace YouTube
                 MessageBox.Show(Ex.Message, "操作錯誤", MessageBoxButton.OK, MessageBoxImage.Error);
                 return; 
             }
-            //TODO: Enqueue object
             var Url = UrlRadio.IsChecked.Value ? InpBox.Text : @"https://www.youtube.com/watch?v=" + InpBox.Text;
             string Name;
             if (UseTitleAsNameCheck.IsChecked.Value)
             {
-                Name = "Pending task untitled";
+                Name = "Untitled pending task (WIP)";
             }
             else
                 Name = OutBox.Text.Split('\\').Last();
             Work w = new Work(Work.Type.Download, Name, Url, OutBox.Text, Work.Format.MP4, QualityCombo.Text);
-            Process.Queue.Add(w);
+            Process.Enqueue(w);
         }
 
         private InvalidOperationException Check()
@@ -125,8 +124,8 @@ namespace YouTube
                 AdjustQueueWindow(null, null);
             }
             qw.Show();
+            Enqueue();
             StartBtn.Content = "開始處理序列";
-            //Audit Required
         }
 
         private void AdjustQueueWindow(object sender, EventArgs e)

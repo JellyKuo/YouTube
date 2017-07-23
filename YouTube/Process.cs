@@ -9,7 +9,7 @@ namespace YouTube
 {
     public static class Process
     {
-        public static ObservableCollection<Work> Queue = new ObservableCollection<Work>();
+        private static ObservableCollection<Work> Queue = new ObservableCollection<Work>();
         #region EventHandler & Events
         public delegate void EnqueueHandler(Work w);
         public delegate void DequeueHandler(int ID);
@@ -109,7 +109,6 @@ namespace YouTube
         public string Destination { get; }
         public Format OutputFormat { get; }
         public string Quality { get; }
-
 
         public Work(Type TaskType, string Name, string Source, string Destination, Format OutputFormat, string Quality)
         {
