@@ -124,8 +124,8 @@ namespace YouTube
                 AdjustQueueWindow(null, null);
             }
             qw.Show();
-            Enqueue();
             StartBtn.Content = "開始處理序列";
+            Enqueue();
         }
 
         private void AdjustQueueWindow(object sender, EventArgs e)
