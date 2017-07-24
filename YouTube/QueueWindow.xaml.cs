@@ -27,6 +27,7 @@ namespace YouTube
             Process.OnDequeue += Process_OnDequeue;
             Process.OnQueueMove += Process_OnQueueMove;
 
+            #region GridTemplate
             LBox.ItemsSource = Grids;
             RowDefinition GRow0 = new RowDefinition();
             RowDefinition GRow1 = new RowDefinition();
@@ -41,6 +42,8 @@ namespace YouTube
             TemplateGrid.ColumnDefinitions.Add(GCol0);
             TemplateGrid.ColumnDefinitions.Add(GCol1);
             TemplateGrid.Margin = new Thickness(0);
+#endregion
+
         }
 
         Grid TemplateGrid = null;
@@ -48,6 +51,7 @@ namespace YouTube
 
         private void Process_OnEnqueue(Work w)
         {
+            #region Generate Grid
             var G = TemplateGrid;
             SolidColorBrush BGBrush = null;
             switch (w.TaskType)
@@ -78,6 +82,7 @@ namespace YouTube
             G.Children.Add(NameLab);
             G.Children.Add(FormatQualityLab);
             G.Children.Add(StateLab);
+            #endregion
             Grids.Add(G);
         }
 
