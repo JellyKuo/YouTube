@@ -42,7 +42,9 @@ namespace YouTube
             TemplateGrid.ColumnDefinitions.Add(GCol0);
             TemplateGrid.ColumnDefinitions.Add(GCol1);
             TemplateGrid.Margin = new Thickness(0);
-#endregion
+
+            
+            #endregion
 
         }
 
@@ -82,18 +84,48 @@ namespace YouTube
             G.Children.Add(NameLab);
             G.Children.Add(FormatQualityLab);
             G.Children.Add(StateLab);
+            ContextMenu cm = new ContextMenu();
+            MenuItem CancelItem = new MenuItem();
+            MenuItem MoveUpItem = new MenuItem();
+            MenuItem MoveDownItem = new MenuItem();
+            CancelItem.Header = "取消";
+            CancelItem.Tag = Grids.Count;
+            MoveUpItem.Header = "向上移動";
+            MoveUpItem.Tag = Grids.Count;
+            MoveDownItem.Header = "向下移動";
+            MoveDownItem.Tag = Grids.Count;
+
+            CancelItem.Click += (sender, e) =>
+            {
+                var s = (MenuItem)sender;
+                Process.Dequeue((int)s.Tag);
+            };
+            MoveUpItem.Click += (sender, e) =>
+            {
+                var s = (MenuItem)sender;
+                Process.MoveUp((int)s.Tag, 1);
+            };
+            MoveDownItem.Click += (sender, e) =>
+            {
+                var s = (MenuItem)sender;
+                Process.MoveDown((int)s.Tag, 1);
+            };
+            cm.Items.Add(CancelItem);
+            cm.Items.Add(MoveUpItem);
+            cm.Items.Add(MoveDownItem);
+            TemplateGrid.ContextMenu = cm;
             #endregion
             Grids.Add(G);
         }
 
         private void Process_OnDequeue(int ID)
         {
-            throw new NotImplementedException();
+            Grids.RemoveAt(ID);
         }
 
         private void Process_OnQueueMove(int OldID, int NewID)
         {
-            throw new NotImplementedException();
+            Grids.Move(OldID, NewID);
         }
     }
 }

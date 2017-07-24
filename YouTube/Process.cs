@@ -9,16 +9,20 @@ namespace YouTube
 {
     public static class Process
     {
+#if DEBUG
+        public static ObservableCollection<Work> Queue = new ObservableCollection<Work>();
+#else
         private static ObservableCollection<Work> Queue = new ObservableCollection<Work>();
-        #region EventHandler & Events
+#endif
+#region EventHandler & Events
         public delegate void EnqueueHandler(Work w);
         public delegate void DequeueHandler(int ID);
         public delegate void QueueMoveHandler(int OldID, int NewID);
         public static event EnqueueHandler OnEnqueue;
         public static event DequeueHandler OnDequeue;
         public static event QueueMoveHandler OnQueueMove;
-        #endregion
-        #region EventArgs
+#endregion
+#region EventArgs
         //public class EnqueueArgs : EventArgs
         //{
         //    private Work w;
@@ -51,12 +55,13 @@ namespace YouTube
         //        }
         //    }
         //}
-        #endregion
+#endregion
 
         public static void Enqueue(Work w)
         {
             if (w == null)
                 return;
+            Queue.Add(w);
             OnEnqueue(w);
         }
 
